@@ -15,7 +15,7 @@ return new class extends Migration
             $table->char('cpf', 11)->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_number');
+            $table->string('phone_number', 11);
             $table->string('street');
             $table->string('number', 10);
             $table->string('district');

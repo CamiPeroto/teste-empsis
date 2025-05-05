@@ -17,18 +17,39 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => 'Camila Peroto',
                 'email' => 'camila@empsis.com.br',
+                'phone_number' => '42988322338',
+                'street' => 'Rua Palmares',
+                'number' => '36',
+                'district' => 'Jardim Brasília',
+                'city' => 'Irati',
+                'state' => 'PR',
+                'zip_code' => '845000000', 
             ]);
         }
         if (!User::where('email', 'rafael@empsis.com.br')->first()) {
             User::create([
                 'name' => 'Rafael Souza',
                 'email' => 'rafael@empsis.com.br',
+                'phone_number' => '42998322337',
+                'street' => 'Rua Cuiabá',
+                'number' => '202',
+                'district' => 'Jardim Brasília',
+                'city' => 'Carambeí',
+                'state' => 'PR',
+                'zip_code' => '84145000', 
             ]);
         }
         if (!User::where('email', 'ana@empsis.com.br')->first()) {
             User::create([
                 'name' => 'Ana Maria',
                 'email' => 'ana@empsis.com.br',
+                'phone_number' => '42991722331',
+                'street' => 'Rua Ricardo Wagner',
+                'number' => '36',
+                'district' => 'Oficinas',
+                'city' => 'Ponta Grossa',
+                'state' => 'PR',
+                'zip_code' => '84025220', 
             ]);
         }
     }
