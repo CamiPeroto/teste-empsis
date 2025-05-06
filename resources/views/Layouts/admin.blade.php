@@ -20,9 +20,16 @@
             </ul>
         </div>
     </nav>
-
-    <main>
+   
+    <main class="main-content">
+       
         @yield('content')
+        
+        <div class="content-box">
+            
+            @yield('content-box')
+        
+        </div>
     </main>
 
 </body>

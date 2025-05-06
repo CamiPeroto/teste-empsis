@@ -18,10 +18,23 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'cpf',
         'name',
         'email',
-        'password',
+        'phone_number',
+        'street',
+        'number',
+        'district',
+        'city',
+        'state',
+        'zip_code',
     ];
+  
+    public function getRouteKeyName()
+    {
+        return 'cpf';
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
