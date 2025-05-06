@@ -10,3 +10,31 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer components{
+   
+    .bg-body {
+        @apply bg-gray-200;
+      }  
+      /* Inicio Navbar */
+      .navbar {
+        @apply bg-slate-600 border-b border-gray-200 px-4 py-0.5 sm:px-6 lg:px-8;  
+      }
+      .navbar-container {
+        @apply flex justify-between items-center;
+      }
+      .navbar-logo {
+        @apply w-auto h-18;
+      }
+      .search-input {
+        @apply  bg-gray-400 text-base text-white flex gap-2  cursor-pointer rounded-md;
+      }
+      .search-items {
+        @apply px-5 py-1 flex gap-2 justify-center items-center;
+      }
+
+       /* Fim Navbar */
+       /* Main */
+  
+    /* Fim Main */
+}
