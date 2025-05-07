@@ -13,6 +13,21 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Chave primária associada à tabela.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'cpf';
+
+    /**
+     * Campo primário não é auto-incrementado.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>

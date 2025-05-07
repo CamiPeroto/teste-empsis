@@ -8,6 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -132,7 +133,7 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('success', 'Usuário excluído com sucesso!');
 
         } catch (Exception $e) {
-
+            Log::error('Erro ao excluir o usuário: ' . $e->getMessage());
             return redirect()->route('user.index')->with('error', 'Usuário não excluído!');
         }
     }
