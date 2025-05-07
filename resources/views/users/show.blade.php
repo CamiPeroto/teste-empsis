@@ -20,7 +20,7 @@
             <a href="{{ route('user.index') }}" class="btn-info">
                 <x-heroicon-o-list-bullet class="w-6 h-6" />
             </a>
-            <a href="#" class="btn-warning">
+            <a href="{{ route('user.edit', ['user' => $user]) }}" class="btn-warning">
                 <x-heroicon-o-pencil-square class="w-6 h-6" />
             </a>
         </div>
