@@ -68,12 +68,12 @@
             <div class="mb-4">
                 <label htmlFor="state" class="form-label">UF </label>
                 <select id="state" class="form-input"  name="state" >
-                    <option value="">Selecione a UF</option>
-                    @foreach($states as $state)
-            <option value="{{ $state }}" {{ $user->state == $state ? 'selected' : '' }}>
-                {{ $state }}
-            </option>
-        @endforeach
+                    <option value="">Selecione o Estado</option>
+                        @foreach($states as $uf => $stateName)
+                            <option value="{{ $uf }}" {{ optional($user->address)->state == $uf ? 'selected' : '' }}>
+                                {{ $stateName }}
+                            </option>
+                        @endforeach
                 </select>
             </div>
             <div class="mb-4">

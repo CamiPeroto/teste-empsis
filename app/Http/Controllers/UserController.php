@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\State;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $users = User::orderByDesc('created_at')->paginate(10);
 
@@ -20,23 +22,27 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        $user->load('address.stateRelation');
+
         return view('users.show', [
             'user' => $user,
         ]);
     }
+
     public function create(User $user)
     {
-        $states = \App\Models\User::select('state')->distinct()->orderBy('state')->pluck('state');
+    $states = State::orderBy('name')->pluck('name', 'uf');
 
-        return view('users.create', [
-        'user' => $user, 
+    return view('users.create', [
+        'user' => $user,
         'states' => $states,
-        ]);
+    ]);
     }
 
-    public function store(UserRequest $request)
+    public function store(UserRequest $request, AddressRequest $addressRequest)
     {
         $request->validated();
+        $addressRequest->validated();
 
         DB::beginTransaction();
 
@@ -46,14 +52,16 @@ class UserController extends Controller
                 'name'         => $request->name,
                 'email'        => $request->email,
                 'cpf'          => $request->cpf,
-                'phone_number' => $request->phone_number,
-                'street'       => $request->street,
-                'number'       => $request->number,
-                'district'     => $request->district,
-                'city'         => $request->city,
-                'state'        => $request->state,
-                'zip_code'     => $request->zip_code,
-
+                'phone_number' => $request->phone_number,          
+            ]);
+           
+            $user->address()->create([
+                'street'   => $request->street,
+                'number'   => $request->number,
+                'district' => $request->district,
+                'city'     => $request->city,
+                'state'    => $request->state,
+                'zip_code' => $request->zip_code,
             ]);
 
             DB::commit();
@@ -69,17 +77,21 @@ class UserController extends Controller
 
     public function edit(User $user)
     {  
-        $states = \App\Models\User::select('state')->distinct()->orderBy('state')->pluck('state');
+        $states = State::orderBy('name')->pluck('name', 'uf');
+
+        $address = $user->address;
         
         return view('users.edit', [
             'user' => $user,
+            'address' => $address,
             'states' => $states,
     ]);
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UserRequest $request, AddressRequest $addressRequest, User $user)
     {
         $request->validated();
+        $addressRequest->validated();
 
         DB::beginTransaction();
 
@@ -90,17 +102,19 @@ class UserController extends Controller
                 'email'        => $request->email,
                 'cpf'          => $request->cpf,
                 'phone_number' => $request->phone_number,
-                'street'       => $request->street,
-                'number'       => $request->number,
-                'district'     => $request->district,
-                'city'         => $request->city,
-                'state'        => $request->state,
-                'zip_code'     => $request->zip_code,
+            ]);
+            $user->address()->update([ 
+                'street'   => $addressRequest->street,
+                'number'   => $addressRequest->number,
+                'district' => $addressRequest->district,
+                'city'     => $addressRequest->city,
+                'zip_code' => $addressRequest->zip_code,
+                'state' => $addressRequest->state,
             ]);
 
             DB::commit();
 
-            return redirect()->route('user.show', ['user' => $request->user])->with('success', 'Usuário editado com sucesso!');
+            return redirect()->route('user.show', ['user' => $user->cpf])->with('success', 'Usuário editado com sucesso!');
         } catch (Exception $e) {
 
             DB::rollBack();

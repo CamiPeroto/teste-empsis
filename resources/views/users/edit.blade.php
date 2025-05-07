@@ -10,9 +10,9 @@
         </div>
     </div>
 
-    <form action="{{ route('user.update') }}" method="POST">
+    <form action="{{ route('user.update', ['user' => $user]) }}" method="PUT">
         @csrf
-        @method('POST')
+        @method('PUT')
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-2">
             <div class="mb-4">
@@ -45,22 +45,22 @@
         <div class="grid grid-cols-2 gap-x-4 gap-y-2">
             <div class="mb-4">
                 <label for="street" class="form-label">Rua</label>
-                <input type="text" name="street" id="street" class="form-input" placeholder="Nome da Rua" value="{{ old('street', $user->street) }}">
+                <input type="text" name="street" id="street" class="form-input" placeholder="Nome da Rua" value="{{ old('street', $address->street) }}">
             </div>
             <div class="mb-4">
                 <label for="number" class="form-label">Número</label>
-                <input type="text" name="number" id="number" class="form-input" placeholder="N°" value="{{ old('number', $user->number) }}">
+                <input type="text" name="number" id="number" class="form-input" placeholder="N°" value="{{ old('number', $address->number) }}">
             </div>
         </div>
 
         <div class="grid grid-cols-2 gap-x-4 gap-y-2">
             <div class="mb-4">
                 <label for="district" class="form-label">Bairro</label>
-                <input type="text" name="district" id="district" class="form-input" placeholder="Bairro" value="{{ old('district', $user->district) }}">
+                <input type="text" name="district" id="district" class="form-input" placeholder="Bairro" value="{{ old('district', $address->district) }}">
             </div>
             <div class="mb-4">
                 <label for="city" class="form-label">Cidade</label>
-                <input type="text" name="city" id="city" class="form-input" placeholder="Nome da Cidade" value="{{ old('city', $user->city) }}">
+                <input type="text" name="city" id="city" class="form-input" placeholder="Nome da Cidade" value="{{ old('city', $address->city) }}">
             </div>
         </div>
 
@@ -69,16 +69,16 @@
                 <label htmlFor="state" class="form-label">UF </label>
                 <select id="state" class="form-input"  name="state" value="{{ old('phone_number', $user->phone_number) }}" >
                     <option value="">Selecione a UF</option>
-                    @foreach($states as $state)
-            <option value="{{ $state }}" {{ $user->state == $state ? 'selected' : '' }}>
-                {{ $state }}
-            </option>
-        @endforeach
+                    @foreach($states as $uf => $stateName)
+                        <option value="{{ $uf }}" {{ optional($user->address)->state == $uf ? 'selected' : '' }}>
+                            {{ $stateName }}
+                        </option>
+                   @endforeach
                 </select>
             </div>
             <div class="mb-4">
                 <label for="city" class="form-label">CEP</label>
-                <input type="text" name="zip_code" id="zip_code" class="form-input" placeholder="CEP" value="{{ old('phone_number', $user->phone_number) }}">
+                <input type="text" name="zip_code" id="zip_code" class="form-input" placeholder="CEP" value="{{ old('phone_number', $address->zip_code) }}">
             </div>
         </div>
 

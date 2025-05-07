@@ -34,6 +34,10 @@ class User extends Authenticatable
     {
         return 'cpf';
     }
+    public function address()
+{
+    return $this->hasOne(Address::class, 'user_cpf', 'cpf');
+}
 
 
     /**
@@ -41,10 +45,6 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
 
     /**
      * Get the attributes that should be cast.

@@ -50,19 +50,19 @@
         <h3 class="content-box-title my-2 border-t border-gray-300">Endereço: </h3>
     </div>
     <div class="mb-1">
-        <span class="detail-content">Rua: </span> {{ $user->street }}
+        <span class="detail-content">Rua: </span> {{ $user->address->street }}
     </div>
     <div class="mb-1">
-        <span class="detail-content">Número: </span> {{ $user->number }}
+        <span class="detail-content">Número: </span> {{ $user->address->number }}
     </div>
     <div class="mb-1">
-        <span class="detail-content">Bairro: </span> {{ $user->district }}
+        <span class="detail-content">Bairro: </span> {{ $user->address->district }}
     </div>
     <div class="mb-1">
-        <span class="detail-content">Estado: </span> {{ $user->state }}
+        <span class="detail-content">Estado: </span> {{ $user->address->stateRelation->name ?? '-'  }}
     </div>
     <div class="mb-1">
-        <span class="detail-content">CEP: </span> {{ $user->zip_code }}
+        <span class="detail-content">CEP: </span> {{ $user->address->zip_code }}
     </div>
 
     </div>
