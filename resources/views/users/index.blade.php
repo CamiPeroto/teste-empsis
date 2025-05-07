@@ -19,7 +19,7 @@
 <div class="content-box-header">
   <h3 class="content-box-title">Listar</h3>
   <div class="content-box-btn">
-    <a href="#" class="btn-success">
+    <a href="{{ route('user.create') }}" class="btn-success">
       <x-heroicon-o-plus-circle class="w-6 h-6" />
     </a>
   </div>
@@ -47,7 +47,7 @@
               <x-heroicon-o-eye class="w-6 h-6" />
             </a>
 
-            <a href="#" class="btn-warning hidden md:flex items-center space-x-1">
+            <a href="{{ route('user.edit', ['user' => $user]) }}" class="btn-warning hidden md:flex items-center space-x-1">
               <x-heroicon-o-pencil-square class="w-6 h-6" /> 
             </a>
 
