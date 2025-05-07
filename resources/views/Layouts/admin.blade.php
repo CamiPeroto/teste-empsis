@@ -14,8 +14,10 @@
         <div class="navbar-container">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="navbar-logo">
             <ul>
-                <div class="search-input">
-                    <li class="search-items"><x-heroicon-o-magnifying-glass class="w-5 h-5" />Pesquisar</li>
+                <div class="search-input ">
+                    <input type="text" id="search-user" class="search-items" placeholder="Buscar...">
+                    <x-heroicon-o-magnifying-glass class="w-6 h-6" />
+                    <ul id="user-results" class="mt-2 text-sm"></ul>
                 </div>
             </ul>
         </div>
