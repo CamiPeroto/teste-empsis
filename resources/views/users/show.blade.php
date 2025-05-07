@@ -25,7 +25,7 @@
             </a>
         </div>
     </div>
-
+    <x-alert />
     <div class="detail-box">
         <div class="mb-1">
             <span class="detail-content">CPF: </span> {{ $user->cpf }}

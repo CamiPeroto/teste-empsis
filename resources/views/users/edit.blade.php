@@ -9,7 +9,7 @@
             </a>
         </div>
     </div>
-
+    <x-alert />
     <form action="{{ route('user.update', ['user' => $user]) }}" method="PUT">
         @csrf
         @method('PUT')

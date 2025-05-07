@@ -9,7 +9,8 @@
             </a>
         </div>
     </div>
-
+    
+    <x-alert />
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
         @method('POST')
