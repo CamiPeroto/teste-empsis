@@ -69,9 +69,8 @@ class UserController extends Controller
 
             return redirect()->route('user.show', ['user' => $user->cpf])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
-
             DB::rollBack();
-
+            Log::error('Erro ao cadastrar o usuário: ' . $e->getMessage());
             return back()->withInput()->with('error', 'Usuário não cadastrado!');
         }
     }
