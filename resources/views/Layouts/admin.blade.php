@@ -25,7 +25,6 @@
               
                 <ul id="user-results"
                     class="absolute top-full mt-1 w-full z-50 bg-white border border-gray-300 rounded-md shadow-lg hidden">
-                    <!-- Itens preenchidos dinamicamente -->
                 </ul>
               </div>
 
