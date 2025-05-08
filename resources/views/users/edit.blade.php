@@ -10,7 +10,7 @@
         </div>
     </div>
     <x-alert />
-    <form action="{{ route('user.update', ['user' => $user]) }}" method="PUT">
+    <form action="{{ route('user.update', ['user' => $user]) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -36,8 +36,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="cpf" class="form-label">CPF</label>
-                <input type="text" name="cpf" id="cpf" class="form-input" placeholder="Digite o CPF" value="{{ old('cpf', $user->cpf) }}">
+                <label for="cpf" class="form-label text-gray-400">CPF</label>
+                <input type="text" name="cpf" id="cpf" class="form-input text-gray-400" placeholder="Digite o CPF" value="{{ old('cpf', $user->cpf) }}" readonly>
             </div>
         </div>
         <h3 class="content-box-title my-2 border-b border-gray-300">Endereço: </h3>

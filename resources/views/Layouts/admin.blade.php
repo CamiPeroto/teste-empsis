@@ -13,13 +13,22 @@
     <nav class="navbar">
         <div class="navbar-container">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="navbar-logo">
-            <ul>
-                <div class="search-input ">
-                    <input type="text" id="search-user" class="search-items" placeholder="Buscar...">
-                    <x-heroicon-o-magnifying-glass class="w-6 h-6" />
-                    <ul id="user-results" class="mt-2 text-sm"></ul>
+            
+            <div class="relative w-40">
+                <div class="search-input w-full px-1 py-1.5">
+                  <input type="text" id="search-user"
+                    class="dropdown-button w-full outline-none"
+                    autocomplete="off"
+                    placeholder="Buscar...">
+                  <x-heroicon-o-magnifying-glass class="w-5 h-5 ml-2 text-white" />
                 </div>
-            </ul>
+              
+                <ul id="user-results"
+                    class="absolute top-full mt-1 w-full z-50 bg-white border border-gray-300 rounded-md shadow-lg hidden">
+                    <!-- Itens preenchidos dinamicamente -->
+                </ul>
+              </div>
+
         </div>
     </nav>
    

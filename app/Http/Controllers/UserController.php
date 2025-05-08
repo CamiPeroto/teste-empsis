@@ -137,5 +137,15 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('error', 'Usuário não excluído!');
         }
     }
+    public function search(Request $request)
+    {
+        $term = $request->input('term');
+
+        $users = User::where('name', 'LIKE', "%{$term}%")
+                    ->orWhere('cpf', 'LIKE', "%{$term}%")
+                    ->get();
+
+        return response()->json($users);
+    }
 
 }

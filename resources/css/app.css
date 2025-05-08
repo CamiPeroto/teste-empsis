@@ -27,7 +27,7 @@
         @apply w-auto h-18;
       }
       .search-input {
-        @apply  bg-gray-400 text-base text-white flex items-center cursor-pointer rounded-md;
+        @apply relative bg-slate-600 text-base text-white flex items-center cursor-pointer rounded-md;
       }
       .search-items {
         @apply w-32 px-3 py-1 flex justify-center items-center outline-none focus:outline-none;
