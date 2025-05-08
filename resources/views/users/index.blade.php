@@ -55,7 +55,7 @@
               action="{{ route('user.destroy', ['user' => $user]) }}" method="POST">
               @csrf
               @method('delete')
-              <button type="button" class="btn-danger hidden md:flex items-center space-x-1" onclick="confirmDelete({{ $user->cpf}})">
+               <button type="button" class="btn-danger hidden md:flex items-center space-x-1" onclick="confirmDelete('{{ preg_replace('/\D/', '', $user->cpf) }}')">
                 <x-heroicon-o-trash class="w-6 h-6" />
               </button>
             </form>  
