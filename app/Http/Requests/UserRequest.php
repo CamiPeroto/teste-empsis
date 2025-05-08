@@ -26,8 +26,8 @@ class UserRequest extends FormRequest
 
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email,'. $this->route('user') . ',cpf',
-            'cpf' => 'required|string|size:11|unique:users,cpf,' . $this->route('user') . ',cpf',
+            'email' => 'required|email|unique:users,email,'. $this->route('user')->cpf . ',cpf',
+            'cpf' => 'required|string|size:11|unique:users,cpf,' . $this->route('user')->cpf . ',cpf',
             'phone_number' => 'required|string|max:11',
         ];
     }
@@ -52,29 +52,6 @@ class UserRequest extends FormRequest
             'phone_number.string' => 'Telefone deve ser uma sequência de caracteres!',
             'phone_number.max' => 'Telefone deve ter no máximo 11 dígitos!',
     
-            'street.required' => 'Campo rua é obrigatório!',
-            'street.string' => 'Rua deve ser um texto!',
-            'street.max' => 'Rua deve ter no máximo 150 caracteres!',
-    
-            'number.required' => 'Campo número é obrigatório!',
-            'number.string' => 'Número deve ser um texto!',
-            'number.max' => 'Número deve ter no máximo 5 caracteres!',
-    
-            'district.required' => 'Campo bairro é obrigatório!',
-            'district.string' => 'Bairro deve ser um texto!',
-            'district.max' => 'Bairro deve ter no máximo 70 caracteres!',
-    
-            'city.required' => 'Campo cidade é obrigatório!',
-            'city.string' => 'Cidade deve ser um texto!',
-            'city.max' => 'Cidade deve ter no máximo 70 caracteres!',
-    
-            'state.required' => 'Campo UF é obrigatório!',
-            'state.string' => 'UF deve ser um texto!',
-            'state.size' => 'UF deve conter exatamente 2 letras!',
-    
-            'zip_code.required' => 'Campo CEP é obrigatório!',
-            'zip_code.string' => 'CEP deve ser um texto!',
-            'zip_code.size' => 'CEP deve conter exatamente 8 dígitos!',
         
         ];
     }
