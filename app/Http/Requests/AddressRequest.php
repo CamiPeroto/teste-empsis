@@ -59,7 +59,7 @@ class AddressRequest extends FormRequest
     
             'zip_code.required' => 'Campo CEP é obrigatório!',
             'zip_code.string' => 'CEP deve ser um texto!',
-            'zip_code.size' => 'CEP deve conter exatamente 8 dígitos!',
+            'zip_code.size' => 'CEP deve conter exatamente :size dígitos!',
         
         ];
     }

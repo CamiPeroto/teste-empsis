@@ -22,13 +22,13 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
 
-        $userId = $this->route('user');
+        $userCpf = optional($this->route('user'))->cpf;
 
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email,'. $this->route('user')->cpf . ',cpf',
-            'cpf' => 'required|string|size:11|unique:users,cpf,' . $this->route('user')->cpf . ',cpf',
-            'phone_number' => 'required|string|max:11',
+            'email' => 'required|email|unique:users,email' . ($userCpf ? ',' . $userCpf . ',cpf' : ''),
+        'cpf' => 'required|string|size:11|unique:users,cpf' . ($userCpf ? ',' . $userCpf . ',cpf' : ''),
+            'phone_number' => 'required|string|size:11',
         ];
     }
 
@@ -45,12 +45,12 @@ class UserRequest extends FormRequest
 
             'cpf.required' => 'Campo CPF é obrigatório!',
             'cpf.string' => 'CPF deve ser uma sequência de números!',
-            'cpf.size' => 'CPF deve conter exatamente 11 dígitos!',
+            'cpf.size' => 'CPF deve conter exatamente :size dígitos!',
             'cpf.unique' => 'Este CPF já está cadastrado!',
     
             'phone_number.required' => 'Campo telefone é obrigatório!',
             'phone_number.string' => 'Telefone deve ser uma sequência de caracteres!',
-            'phone_number.max' => 'Telefone deve ter no máximo 11 dígitos!',
+            'phone_number.size' => 'Telefone deve ter exatamente :size dígitos!',
     
         
         ];
