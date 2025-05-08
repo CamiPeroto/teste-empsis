@@ -70,7 +70,7 @@
   </table>
   <!-- Exibe os links de paginação -->
   <div class="mt-4">
-    {{ $users->links() }} <!-- Exibe os links de paginação -->
+    {{ $users->links() }} 
   </div>
 </div>
 @endsection
