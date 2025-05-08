@@ -38,7 +38,7 @@
       <tbody>
       @forelse ($users as $user)
         <tr class="table-row-body">
-          <td class="table-body">{{ $user->cpf }}</td>
+          <td class="table-body">{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $user->cpf) }}</td>
           <td class="table-body">{{ $user->name }}</td>
           <td class="table-body hidden lg:table-cell">{{ $user->email }}</td>
           

@@ -28,7 +28,7 @@
     <x-alert />
     <div class="detail-box">
         <div class="mb-1">
-            <span class="detail-content">CPF: </span> {{ $user->cpf }}
+            <span class="detail-content">CPF: </span> {{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $user->cpf) }}
         </div>
         <div class="mb-1">
             <span class="detail-content">Nome: </span> {{ $user->name }}
@@ -37,7 +37,7 @@
             <span class="detail-content">E-mail: </span> {{ $user->email }}
         </div>
         <div class="mb-1">
-            <span class="detail-content">Telefone: </span> {{ $user->phone_number }}
+            <span class="detail-content">Telefone: </span> {{ preg_replace('/(\d{2})(\d{1})(\d{4})(\d{4})/', '($1) $2 $3-$4', $user->phone_number) }}
         </div>
         <div class="mb-1">
             <span class="detail-content"> Cadastrado Em: </span>
@@ -62,7 +62,7 @@
         <span class="detail-content">Estado: </span> {{ $user->address->stateRelation->name ?? '-'  }}
     </div>
     <div class="mb-1">
-        <span class="detail-content">CEP: </span> {{ $user->address->zip_code }}
+        <span class="detail-content">CEP: </span> {{ preg_replace('/(\d{5})(\d{3})/', '$1-$2', $user->address->zip_code) }}
     </div>
 
     </div>

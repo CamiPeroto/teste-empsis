@@ -1,5 +1,8 @@
 import './bootstrap';
+import $ from 'jquery';
+import 'jquery-mask-plugin';
 
+// Alerta confirmação de exclusão
 window.confirmDelete = function (cpf) {
     Swal.fire({
         title: "Tem certeza ?",
@@ -16,31 +19,29 @@ window.confirmDelete = function (cpf) {
         }
       })
     }
+    //Fim alerta confirmação de exclusão
 
+    // Função Pesquisar
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('search-user');
       const resultsBox = document.getElementById('user-results');
   
       if (!searchInput || !resultsBox) return;
   
-      // Evento de input para capturar as alterações no campo de pesquisa
       searchInput.addEventListener('keyup', function () {
           const term = this.value;
   
-          // Se o termo tiver menos de 3 caracteres, esconde os resultados e limpa
           if (term.length < 3) {
               resultsBox.classList.add('hidden');
               resultsBox.innerHTML = '';
               return;
           }
   
-          // Faz a requisição para buscar usuários
           fetch(`/users/search?term=${encodeURIComponent(term)}`)
               .then(response => response.json())
               .then(users => {
                   let html = '';
   
-                  // Verifica se é uma busca por CPF (pelo menos 2 números)
                   const isCpfSearch = /^\d{2,}$/.test(term);
   
                   if (users.length > 0) {
@@ -57,17 +58,34 @@ window.confirmDelete = function (cpf) {
                       html = '<li class="px-4 py-2 text-gray-500">Nenhum usuário encontrado.</li>';
                   }
   
-                  // Exibe os resultados na caixa
                   resultsBox.classList.remove('hidden');
                   resultsBox.innerHTML = html;
               });
       });
   
-      // Evento para fechar o dropdown e limpar o input se o usuário clicar fora
       document.addEventListener('click', function (e) {
           if (!searchInput.contains(e.target) && !resultsBox.contains(e.target)) {
-              resultsBox.classList.add('hidden'); // Esconde a lista de resultados
-              searchInput.value = ''; // Limpa o valor do input
+              resultsBox.classList.add('hidden'); 
+              searchInput.value = ''; 
           }
       });
   });
+// Fim Função Pesquisar
+
+//Máscaras dos inputs
+
+    $(document).ready(function () {
+        // Aplica as máscaras
+        $('#cpf').mask('000.000.000-00');
+        $('#phone_number').mask('(00) 9 0000-0000');
+        $('#zip_code').mask('00000-000');
+
+        // Limpa as máscaras antes de enviar o formulário
+        $('form').on('submit', function () {
+            $('#cpf').val($('#cpf').cleanVal());
+            $('#phone_number').val($('#phone_number').cleanVal());
+            $('#zip_code').val($('#zip_code').cleanVal());
+        });
+    });
+
+//Fim máscaras dos inputs
