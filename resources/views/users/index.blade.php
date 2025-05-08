@@ -51,10 +51,11 @@
               <x-heroicon-o-pencil-square class="w-6 h-6" /> 
             </a>
 
-            <form action="{{ route('user.destroy', ['user' => $user]) }}" method="POST">
+            <form id="delete-form-{{  $user->cpf }}" 
+              action="{{ route('user.destroy', ['user' => $user]) }}" method="POST">
               @csrf
               @method('delete')
-              <button type="submit" class="btn-danger hidden md:flex items-center space-x-1">
+              <button type="button" class="btn-danger hidden md:flex items-center space-x-1" onclick="confirmDelete({{ $user->cpf}})">
                 <x-heroicon-o-trash class="w-6 h-6" />
               </button>
             </form>  
